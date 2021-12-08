@@ -34,7 +34,13 @@ def log(msg,newline=True,explicit_log_and_print=False):
         print(msg)
 
 
-
+def dfs(root,lvl=0):
+    log("lvl:" + str(lvl) + ",node:",newline=False)
+    log(root[0])
+    if len(root) > 1:
+        nodes = root[1]
+        for node in nodes:
+            dfs(node, lvl + 1)
 
 
 def bfs(roots,lvl=-1):
@@ -52,6 +58,9 @@ def bfs(roots,lvl=-1):
 def start():
     log("###BFS#####")
     bfs([ROOT])
+    log("###DFS#####")
+    dfs(ROOT)
+    
     
 
 # Main program
