@@ -2,7 +2,7 @@ import time
 
 # Constants and global scope variables declaration
 FILES_ACCES_MODE = 'r'
-SEP = ','
+DEPTH_LIM = 2
 LOG_OUT = "./logs/"
 LOG_FILENAME = str( time.time() ) + ".log"
 LOG_AND_PRINT = True
@@ -42,6 +42,16 @@ def dfs(root,lvl=0):
         for node in nodes:
             dfs(node, lvl + 1)
 
+def limited_dfs(root, depth_limit, lvl=0):
+    log("lvl:" + str(lvl) + ",node:",newline=False)
+    log(root[0])
+    if len(root) > 1 and lvl < depth_limit:
+        nodes = root[1]
+        for node in nodes:
+            limited_dfs(node, depth_limit, lvl + 1)
+
+
+        
 
 def bfs(roots,lvl=-1):
         while len(roots) > 0:
@@ -56,12 +66,12 @@ def bfs(roots,lvl=-1):
             roots = queue
 
 def start():
-    log("###BFS#####")
+    log("### BFS #####")
     bfs([ROOT])
-    log("###DFS#####")
+    log("### DFS #####")
     dfs(ROOT)
-    
-    
+    log("### DFS with depth limited to "+str(DEPTH_LIM)+" #####")
+    limited_dfs(ROOT, DEPTH_LIM)
 
 # Main program
 start()
