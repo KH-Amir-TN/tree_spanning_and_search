@@ -51,7 +51,10 @@ def limited_dfs(root, depth_limit, lvl=0):
             limited_dfs(node, depth_limit, lvl + 1)
 
 
-        
+def iterative_limited_dfs(root, max_depth):
+    for depth in range(1, max_depth + 1):
+        log("DFS with depth limited to "+str(depth)+":")
+        limited_dfs(root,depth)        
 
 def bfs(roots,lvl=-1):
         while len(roots) > 0:
@@ -72,6 +75,8 @@ def start():
     dfs(ROOT)
     log("### DFS with depth limited to "+str(DEPTH_LIM)+" #####")
     limited_dfs(ROOT, DEPTH_LIM)
+    log("### Iterative DFS with max depth limited to "+str(DEPTH_LIM)+" #####")
+    iterative_limited_dfs(ROOT, DEPTH_LIM)
 
 # Main program
 start()
